@@ -1,0 +1,21 @@
+node_modules
+.git
+.gitignore
+README.md
+.env
+.env.local
+.env.*.local
+dist
+.DS_Store
+*.log
+.vscode
+.idea
+coverage
+.nyc_output
+# Exclude Yarn PnP files - they'll be generated during build
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml
+
