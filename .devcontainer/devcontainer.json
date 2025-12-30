@@ -1,14 +1,19 @@
 {
   "name": "app",
-  "build": {
-    "dockerfile": "../Dockerfile"
-  },
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
   "service": "app",
   "workspaceFolder": "/app",
-  "postCreateCommand": "yarn install && yarn dlx @yarnpkg/sdks vscode || true",
+  "overrideCommand": false,
+  "postCreateCommand": "yarn install --immutable && yarn setup:sdks",
   "remoteUser": "root",
   "customizations": {
     "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "arcanis.vscode-zipfs"
+      ],
       "settings": {
         "search.exclude": {
           "**/.yarn": true,
@@ -16,25 +21,14 @@
         },
         "terminal.integrated.defaultProfile.linux": "bash",
         "typescript.tsdk": ".yarn/sdks/typescript/lib",
-        "eslint.useFlatConfig": true,
-  	"eslint.packageManager": "yarn",
         "typescript.enablePromptUseWorkspaceTsdk": true,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "biome.enabled": true,
+        "editor.defaultFormatter": "biomejs.biome",
         "editor.formatOnSave": true,
-        "source.organizeImports": "explicit",
-        "eslint.runtime": "/usr/local/bin/node",
-  	"eslint.nodePath": ".yarn/sdks",
-	"eslint.useESLintClass": true,
-        "extensions": [
-          "dbaeumer.vscode-eslint"
-        ],
-        "eslint.format.enable": true,
-        "eslint.validate": [
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact"
-        ],
+        "editor.codeActionsOnSave": {
+          "source.organizeImports.biome": "explicit"
+        },
+        "biome.lsp.bin": ".devcontainer/biome.sh"
       }
     }
   }

@@ -8,6 +8,7 @@ services:
     volumes:
       - .:/app
       - ./.yarn/sdks:/app/.yarn/sdks
+      - ./.yarn/cache:/app/.yarn/cache
     environment:
       - NODE_ENV=development
     restart: unless-stopped

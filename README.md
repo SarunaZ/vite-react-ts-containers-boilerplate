@@ -2,29 +2,26 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Setup
+## Setup (PnP, no node_modules)
 
-This project uses Yarn PnP (Plug'n'Play) for dependency management.
+This project uses Yarn PnP. The cache is stored in `.yarn/cache` (per-project) so that PnP paths are portable between host and container.
 
-### Local Development Setup
-
-1. Install dependencies:
+### Bootstrap via Docker (no host Corepack/Yarn needed)
+From the host, let Docker do the install and SDK generation (bind mounts will write `.yarn/cache`, `.pnp.*`, `.yarn/sdks` onto your host):
    ```bash
-   yarn install
+docker compose run --rm app yarn install --immutable
+docker compose run --rm app yarn setup:sdks
    ```
+Then open the folder in VS Code; the workspace settings point TS/ESLint to `.yarn/sdks`.
 
-2. Install IDE SDKs (TypeScript, ESLint, Prettier):
+### Direct host install (if you do have Yarn)
    ```bash
+yarn install --immutable
    yarn setup:sdks
    ```
    
-   This will set up the SDKs in `.yarn/sdks` so your IDE can properly use TypeScript, ESLint, and Prettier with Yarn PnP.
-
-   **Note:** The SDKs are automatically installed after `yarn install` via the `prepare` script, but you can run `yarn setup:sdks` manually if needed.
-
-### Dev Container Setup
-
-If you're using the dev container, the SDKs are automatically installed during the container build and startup.
+### Dev Container
+The devcontainer runs the same immutable install and SDK setup automatically.
 
 Currently, two official plugins are available:
 

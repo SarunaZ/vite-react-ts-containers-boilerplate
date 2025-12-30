@@ -15,7 +15,8 @@ coverage
 # Exclude Yarn PnP files - they'll be generated during build
 .pnp.cjs
 .pnp.loader.mjs
-.yarn/cache
+# Keep Yarn cache in the repo so PnP paths stay portable across host/container
+# .yarn/cache
 .yarn/install-state.gz
 .yarn/build-state.yml
 
