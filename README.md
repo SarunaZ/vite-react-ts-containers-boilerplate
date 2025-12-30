@@ -30,6 +30,23 @@ Choose one of the following setups:
 > [!IMPORTANT]  
 > **It is highly recommended to run the project inside of a VS Code Dev Container.**
 
+### Initial Setup
+
+If you're running multiple instances of this boilerplate, configure a unique port:
+
+1. **Copy the environment file:**
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Edit `.env` and change the port:**
+   ```bash
+   VITE_PORT=5174  # Or any other available port
+   ```
+
+> [!NOTE]  
+> The default port is `5173`. Skip this step if you're only running one instance.
+
 ### Option 1: Using VS Code Dev Container
 
 1. **Open in Dev Container:**
@@ -43,7 +60,7 @@ Choose one of the following setups:
    ```
 
 3. **Access the application:**
-   Open [http://localhost:5173](http://localhost:5173)
+   Open [http://localhost:5173](http://localhost:5173) (or your configured `VITE_PORT`)
 
 ### Option 2: Local Development
 
@@ -68,7 +85,7 @@ Choose one of the following setups:
    ```
 
 5. **Access the application:**
-   Open [http://localhost:5173](http://localhost:5173)
+   Open [http://localhost:5173](http://localhost:5173) (or your configured `VITE_PORT`)
 
 ## Available Scripts
 
