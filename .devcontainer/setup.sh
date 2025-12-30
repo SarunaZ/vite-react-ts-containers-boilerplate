@@ -20,6 +20,7 @@ if [ -f "/root/.ssh/id_rsa.pub" ]; then
   git config --global user.signingkey /root/.ssh-signing/id_rsa.pub
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
+  git config --global core.sshCommand "ssh -i /root/.ssh-signing/id_rsa -o IdentitiesOnly=yes"
   echo "✓ Git configured for SSH signing with RSA key"
 else
   echo "⚠️  No SSH keys found at /root/.ssh/"
