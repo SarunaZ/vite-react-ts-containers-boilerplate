@@ -21,23 +21,6 @@ if [ -f "/root/.ssh/id_rsa.pub" ]; then
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   echo "✓ Git configured for SSH signing with RSA key"
-elif [ -f "/root/.ssh/id_ed25519.pub" ]; then
-  echo "🔑 Found Ed25519 SSH key"
-  
-  # Copy keys to a writable location with correct permissions
-  mkdir -p /root/.ssh-signing
-  cp /root/.ssh/id_ed25519 /root/.ssh-signing/ 2>/dev/null || true
-  cp /root/.ssh/id_ed25519.pub /root/.ssh-signing/ 2>/dev/null || true
-  chmod 700 /root/.ssh-signing
-  chmod 600 /root/.ssh-signing/id_ed25519 2>/dev/null || true
-  chmod 644 /root/.ssh-signing/id_ed25519.pub 2>/dev/null || true
-  
-  echo "⚙️  Configuring git for SSH commit signing..."
-  git config --global gpg.format ssh
-  git config --global user.signingkey /root/.ssh-signing/id_ed25519.pub
-  git config --global commit.gpgsign true
-  git config --global tag.gpgsign true
-  echo "✓ Git configured for SSH signing with Ed25519 key"
 else
   echo "⚠️  No SSH keys found at /root/.ssh/"
   echo "   Expected id_rsa.pub or id_ed25519.pub"
