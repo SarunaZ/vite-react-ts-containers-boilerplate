@@ -6,7 +6,13 @@
   "service": "app",
   "workspaceFolder": "/app",
   "overrideCommand": false,
-  "postCreateCommand": "yarn install --immutable && yarn setup:sdks",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,readonly,type=bind"
+  ],
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
   "remoteUser": "root",
   "customizations": {
     "vscode": {
